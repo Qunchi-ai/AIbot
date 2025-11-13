@@ -1,4 +1,5 @@
 import re
 
-def valid_phone(phone):
-    return bool(re.fullmatch(r"(\+?\d[\d\s\-]{7,})", phone))
+def valid_phone(text: str) -> bool:
+    pattern = r"^\+?\d{7,15}$"
+    return bool(re.match(pattern, text))

@@ -1,23 +1,20 @@
-import logging
-from aiogram import Bot, Dispatcher, executor
+import asyncio
+from aiogram import Bot, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+
 from config import BOT_TOKEN
 from handlers import register_handlers
-from db import init_db
 
-logging.basicConfig(level=logging.INFO)
 
-def main():
-    init_db()
+async def main():
     bot = Bot(token=BOT_TOKEN)
-
-    # Добавляем хранение состояний — ЭТО ГЛАВНОЕ
-    storage = MemoryStorage()
-    dp = Dispatcher(bot, storage=storage)
+    dp = Dispatcher(bot, storage=MemoryStorage())
 
     register_handlers(dp)
 
-    executor.start_polling(dp, skip_updates=True)
+    print("Бот запущений 🚀")
+    await dp.start_polling()
+
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
