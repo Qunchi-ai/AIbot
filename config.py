@@ -1,10 +1,10 @@
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv # <--- УДАЛИТЕ ИЛИ ЗАКОММЕНТИРУЙТЕ ЭТО
+#
+# # Загружаем переменные из .env (локально)
+# load_dotenv() # <--- УДАЛИТЕ ИЛИ ЗАКОММЕНТИРУЙТЕ ЭТО
 
-# Загружаем переменные из .env (локально)
-load_dotenv()
-
-# Читаем переменные окружения
+# Читаем переменные окружения (теперь они берутся напрямую из окружения Railway)
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 ADMIN_ID = os.getenv("ADMIN_ID")
 
@@ -19,4 +19,5 @@ if not BOT_TOKEN:
     raise ValueError("❌ BOT_TOKEN не найден. Добавьте его в .env или переменные Railway.")
 
 if not ADMIN_ID:
+    # Ваше сообщение об ошибке, которое вы видите
     raise ValueError("❌ ADMIN_ID не найден. Добавьте его в .env или переменные Railway.")
